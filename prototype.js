@@ -68,14 +68,14 @@ function Circle(radius){
     }
 };
 
+const c1 = new Circle(10);
+const c2 = new Circle(10);
+
 // Protptype Members
 
 Circle.prototype.draw=function(){
     console.log(draw);
 }
-
-const c1 = new Circle(10);
-const c2 = new Circle(10);
 
 // now we can do this
 
@@ -83,6 +83,8 @@ c1.draw();
 c1.toSring(); // "[Object Object]"
 
 // we can also overwrite the implementation of a prototypical method. For example : 
+// it does not matter where we change the Prototype. We can create an instrance of an object and then modified the prototype. the modified property will still be available to the new created object. In the example above,we created an Object c1 and then we modified the prototype. c1 can access the 'draw' method. 
+
 
 Circle.prototype.toSring=function(){
     return('Circle with radius '+ this.radius);
@@ -90,4 +92,22 @@ Circle.prototype.toSring=function(){
 
 c1.toSring() // "Circle with radius 1";
 
-// we can call an Instance method in a Prototype method . In the example above inside of the Circle constructor : we have instance methode "move" and we can call the prototype methode "draw" inside of "move" methode.
+// we can call an Instance member in a Prototype member as well as a prototype member in a Instance member . In the example above inside of the Circle constructor : we have instance methode "move" and we can call the prototype methode "draw" inside of "move" methode.
+
+// To get the own/instance properties:
+Object.keys(obj);
+
+console.log(Object.keys(c1)); // ["move","radius"]
+
+// To get all the properties (instance + prototype): 
+for (let key in c1) {
+    console.log(key);
+    // radius
+    // move
+    // draw
+}
+
+// to find out if a property/methode is instance member or prototype member we use : 
+
+c1.hasOwnProperty('radius') // true;
+c1.hasOwnProperty('draw') // false; because draw is a prototype member
