@@ -1,3 +1,5 @@
+// In JavaScript, we don't have Classes! we only have Objects!!!!
+
 // *** In OOP we combined a groups of related variables and functions into an unit. we call this unit an object. We refer to this variable as Properties and the Functions as method.
 
 // **** Four Piller of Object oriented Programming *****
