@@ -2,10 +2,10 @@
 
 // A prototype is a regular Object. Every Object in JavaScript has a Prototype or parent except the root Object ( ObjectBase); All functions in Javascript is an Object. It has properties and methods.
 
-// every object we define has a ObjectBase.
+// every object we define has an ObjectBase.
 
 let y = {};
-// here we defined an Object y. We didn't inherit it from any object. But in JavaScript every Object we define has a ObjectBase and get access of it's all methods.
+// here we defined an Object y. We didn't inherit it from any object. But in JavaScript every Object we define has an ObjectBase and get access of it's all methods.
 
 // when we try to access a property, method/member,  of an Object, javascript engine look for that method on that object itself. If it cant find that member then it looks at the Prototype (parent) of that object. All the way up to its root Object thats we call ObjectBase.
 
@@ -111,3 +111,51 @@ for (let key in c1) {
 
 c1.hasOwnProperty('radius') // true;
 c1.hasOwnProperty('draw') // false; because draw is a prototype member
+
+
+//  *************** Prototypical Inheritance   **************************** 
+
+function Shape(){
+}
+
+Shape.prototype.duplicate = function(){
+    console.log("duplicate");
+}
+
+function Circle(radius){
+    //Instance members
+    this.radius=radius;
+};
+
+// Protptype Members
+
+Circle.prototype.draw=function(){
+    console.log(draw);
+}
+
+const s = new Shape();
+const c = new Circle(10);
+
+// in the example above we have a 'Shape' constructor that has a protptype member "duplicate" and we have a 'Circle' constructor that has a protptype member "draw".We have two objects "s" that inherits from "Shape" constructor and "c" that inherits from "Circle" constructor. now if we want to have same "duplicate" methode in 'c' object thats has the same implementation like the prototype member of "Shape" constructor, we dont want to redefine a 'duplicate' methode for "c" object like this :
+
+Circle.prototype.duplicate = function(){
+    console.log("duplicate");
+}
+
+// rather we want top do a prototypical inheritance.
+// our 'c' object inherits from 'CircleBase' and 'CircleBase' inherits from 'ObjectBase'. on the other hand 's' object inherits from 'ShapeBase' and 'ShapeBase' inherits from 'ObjectBase'. So if we want that out 'c' object will have access to all instance and prototypical member of 'CircleBase' as well as 'Shapebase' we can easily do the prototypical inheritance. Our 'CircleBase' will inherits from 'ShapeBase'. so at the end we will have an 'c' object that inherits from 'CircleBase', 'CircleBase' inherits from 'ShapeBase' and 'ShapeBase' inherits from 'ObjectBase'.
+// in jevascript we have the function 'Object.create()' that create an new object base on the given prototype.
+
+Circle.prototype = Object.create(Object.prototype) // 'CircleBase' inherits from 'ObjectBase'
+new Circle.prototype.constructor() // Circle{}
+
+Circle.prototype = Object.create(Shape.prototype) // 'CircleBase' inherits from 'ShapeBase'  it calls prototypical inheritance.
+
+// now we have to reset the constructor of 'Circle' by writing
+
+new Circle.prototype.constructor() // it will return Shape{} because we didn't reset the constructor of Circle
+
+// so whenever we reset the prototype of an object as best practice  we should also reset the constructor of that object.
+
+Circle.prototype.constructor = Circle;
+
