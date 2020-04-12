@@ -11,7 +11,7 @@
 // 3. Inheritance : Inheritance helps us eliminate redunded code. We can build an generic Object and help other Object inherite the Propertice and Method.
 
 
-// Polimorphism : Polimorphism means Many Form. This is a technik to get rid of long if / else or switch / catch statement. In Polimorphism method we can implement a render method for each of the Object and the methode will behave differently depending on the type of the object we are referencing. 
+// Polimorphism : Polimorphism means Many Form. This is a technik to get rid of long if / else or switch / catch statement. In Polimorphism method we can implement a render method for each of the Object and the method will behave differently depending on the type of the object we are referencing. 
 
 //  *** Value vs Reference type
 
@@ -114,7 +114,7 @@ for (let key in circle){
     //  draw f(){ console.log('draw')}
 }
 
-// if you want to get the value of the properties excluding mathode , you can use "typeof" methode in an if condition
+// if you want to get the value of the properties excluding mathode , you can use "typeof" method in an if condition
 
 
 for (let key in circle){
@@ -146,7 +146,7 @@ function CircleWithAbstraction(radius){
 
     let defaultLocation = {x:0, y:0};
 
-    // creating a private methode... its not accessible from outside of the function 
+    // creating a private method... its not accessible from outside of the function 
 
     let computeOptimumLocation = function(factor){
         console.log(2*factor);
@@ -157,7 +157,7 @@ function CircleWithAbstraction(radius){
         console.log( defaultLocation);
     }
 
-    // write a methode to access the local variable
+    // write a method to access the local variable
     this.getDefaultLocation = function (){
         return defaultLocation;
     }
@@ -187,7 +187,7 @@ const circleWithAbstraction = new CircleWithAbstraction(10);
 
 // in contrast of "scope" we have "closure". A closure determines what variables will be accessible in an inner function. A function / method of an Object will be able to access all the variables that defined inside of that function as well as the variables defined in its parent function. The scope is temporary and die. Every time we call a function the local variable will be recreated and reinitialised and after that function it will die. 
 
-// As local variables are not accessible from outside and if you want to display the local variable somewhere in our website , we can simply create a methode and retuen that varible. By calling that methode we can easily access the variable. check "getDefaultLocation" methode.
+// As local variables are not accessible from outside and if you want to display the local variable somewhere in our website , we can simply create a method and retuen that varible. By calling that method we can easily access the variable. check "getDefaultLocation" method.
 
 // using  'Object.defineProperty we can define the local variable as a property of an Object and get it from outside of that object like this
 
